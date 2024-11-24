@@ -27,20 +27,20 @@
 #define PRS_MR_ITERATIONS 12
 
 typedef enum { prs_public_key_type, prs_secret_key_type } prs_key_type_t;
-
-struct prs_keys_struct {
-    prs_key_type_t type;
+struct prs_keys_struct { // why keys
+    prs_key_type_t type; // where to use
     unsigned int n_bits;
     unsigned int k;
     mpz_t n;
     mpz_t y;
 
-    mpz_t k_2;
+    mpz_t k_2; // 2^k
     mpz_t p;
     mpz_t q;
-    mpz_t *d;
+    mpz_t *d; // fast decrption
 };
-typedef struct prs_keys_struct prs_keys_t[1];
+typedef struct prs_keys_struct prs_keys_t[1]; // in pointer ...
+
 struct prs_plaintext_struct {
     mpz_t m;
 };

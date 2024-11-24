@@ -22,8 +22,8 @@
  * @param plaintext
  */
 void prs_plaintext_init(prs_plaintext_t plaintext){
-    assert(plaintext);
-    mpz_init(plaintext->m);
+    assert(plaintext); // null?
+    mpz_init(plaintext->m); // init to 0
 }
 
 /**
@@ -85,6 +85,7 @@ void prs_generate_keys_v1(prs_keys_t keys, unsigned int k, unsigned int n_bits, 
     mpz_ui_pow_ui(k_2, 2L, k);
     mpz_set(keys->k_2, k_2);
 
+    // set limits
     mpz_ui_pow_ui(p_min, 2L, k << 1);
     mpz_ui_pow_ui(p_max, 2L, k << 2);
     //mpz_sub_ui(p_min, p_min, 1L);
@@ -98,25 +99,23 @@ void prs_generate_keys_v1(prs_keys_t keys, unsigned int k, unsigned int n_bits, 
     mpz_sub(limit, r_max, r_min);
     mpz_add_ui(limit, limit, 1L);
 
+    // produce the prime
     mpz_set_ui(prime, 2);
     mpz_set_ui(prod, 1);
     do{
         mpz_nextprime(prime, prime);
         mpz_mul(prod, prod, prime);
     } while(mpz_cmp(prod, limit) < 0);
-
     if(mpz_cmp(prod, limit)>0){
         mpz_div(prod, prod, prime);
     }
 
+    // get the random v
     // v0 = -((1/2^k) + r_min)
     mpz_set_ui(v0, 1L);
     mpz_div_2exp(v0, v0, keys->k);
     mpz_sub(v0, v0, r_min);
-
     mpz_mod(v0, v0, prod);
-
-
     //random v
     mpz_urandomm(v, prng, prod);
 

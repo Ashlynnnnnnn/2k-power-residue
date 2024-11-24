@@ -33,7 +33,7 @@ typedef enum {
     msg_normal,
     msg_verbose,
     msg_very_verbose
-} msg_level_t;
+} msg_level_t; // msg_level_t -> type
 
 #define pmesg_mpz_shortening_threshold 22
 #define pmesg_mpz_shortening_prefix_suffix_length 10
