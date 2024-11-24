@@ -11,6 +11,7 @@ include_directories(src/include)
 add_executable(
         2k-prs-test
         # sources
+        src/tests/2k-prs.c
 
         # utils
         src/utils/lib-mesg.c
@@ -18,8 +19,7 @@ add_executable(
         src/utils/lib-misc.c
 
         # lib sources
-        src/lib/lib-2k-prs.c
-        src/tests/2k-prs.c)
+        src/lib/lib-2k-prs.c)
 
 # Main
 add_executable(
