@@ -27,8 +27,8 @@
 #define PRS_MR_ITERATIONS 12
 
 typedef enum { prs_public_key_type, prs_secret_key_type } prs_key_type_t;
-struct prs_keys_struct { // why keys
-    prs_key_type_t type; // where to use
+struct prs_keys_struct {
+    //prs_key_type_t type; // where to use
     unsigned int n_bits;
     unsigned int k;
     mpz_t n;
